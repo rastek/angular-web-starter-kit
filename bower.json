@@ -1,0 +1,31 @@
+{
+  "name": "angular-web-starter-kit",
+  "version": "0.0.1",
+  "homepage": "https://github.com/ocombe/angular-web-starter-kit",
+  "authors": [
+    "Olivier Combe <olivier.combe@gmail.com>"
+  ],
+  "license": "Apache 2",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    ".idea",
+    "dist"
+  ],
+  "dependencies": {
+    "jquery": "~2.1.1",
+    "angular": "~1.2.20",
+    "angular-resource": "~1.2.20",
+    "angular-sanitize": "~1.2.20",
+    "angular-mocks": "~1.2.20",
+    "angular-ui-router": "~0.2.10",
+    "lodash": "~2.4.1",
+    "bootstrap-sass-official": "~3.2.0"
+  },
+  "overrides": {
+    "bootstrap-sass-official": {
+      "ignore": true
+    }
+  }
+}
