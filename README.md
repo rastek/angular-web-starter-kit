@@ -1,3 +1,33 @@
+# Getting Started
+
+## Requirements
+
+- [nodejs](https://nodejs.org/download/)-v0.10.0
+- [python](https://www.python.org/downloads/)-v2.7.2
+- [ruby](https://www.ruby-lang.org/en/downloads/)-v2.2.2
+
+
+```sh
+$ npm install --global gulp
+```
+ 
+```sh
+$ npm install -g bower
+```
+
+## Install
+
+Download all dependencies..
+```sh
+$ npm install
+```
+..and run gulp to compile scripts, sass etc.
+```sh
+$ gulp
+```
+
+
+
 # [![Web Starter Kit](https://cloud.githubusercontent.com/assets/170270/3343034/ceef6e92-f899-11e3-96b9-5d9d69d97a00.png)](https://github.com/rastek/angular-web-starter-kit/releases/latest)
 
 ## Overview
