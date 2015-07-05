@@ -21,15 +21,7 @@
 
 // Include Gulp & tools we'll use
 var gulp = require('gulp');
-var $ = require('gulp-load-plugins')({
-    pattern: ['gulp-*', 'gulp.*'], // the glob(s) to search for
-   // config: 'package.json', // where to find the plugins, by default  searched up from process.cwd()
-    scope: ['devDependencies'], // which keys in the config to look within
-    replaceString: /^gulp(-|\.)/, // what to remove from the name of the module when adding it to the context
-    camelize: true, // if true, transforms hyphenated plugins names to camel case
-    lazy: false, // whether the plugins should be lazy loaded on demand
-    rename: {} // a mapping of plugins to rename
-});
+var $ = require('gulp-load-plugins')();
 var del = require('del');
 var runSequence = require('run-sequence');
 var browserSync = require('browser-sync-x');
@@ -120,8 +112,9 @@ gulp.task('styles', ['styles:scss', 'styles:css']);
 
 // Scan your HTML for assets & optimize them
 gulp.task('html', function () {
+    var assets = $.useref.assets({searchPath: '{app}'});
     return gulp.src('app/**/*.html')
-        .pipe($.useref.assets({searchPath: '{.tmp,app}'}))
+        .pipe(assets)
         // Concatenate and minify JavaScript
         .pipe($.if('*.js', $.uglify({preserveComments: 'some'})))
         // Remove Any Unused CSS
@@ -138,7 +131,7 @@ gulp.task('html', function () {
          })))*/
         // Concatenate and minify styles
         .pipe($.if('*.css', $.csso()))
-        .pipe($.useref.assets().restore())
+        .pipe(assets.restore())
         .pipe($.useref())
         // Update production Style Guide paths
         .pipe($.replace('components/components.css', 'components/main.min.css'))
@@ -171,7 +164,7 @@ gulp.task('vendor', function () {
 
 
 // Clean output directory
-gulp.task('clean', del.bind(null, ['.tmp', 'dist']));
+gulp.task('clean', del.bind(null, ['dist']));
 
 // Watch files for changes & reload
 gulp.task('serve', function () {
@@ -179,13 +172,12 @@ gulp.task('serve', function () {
         open: false,
         notify: true,
         server: {
-            baseDir: ['.tmp', 'app']
+            baseDir: ['app']
         }
     });
 
     gulp.watch(['app/**/*.html'], reload);
     gulp.watch(['app/scss/**/*.scss'], ['styles:scss']);
-//	gulp.watch(['{.tmp,app}/assets/styles/**/*.css'], ['styles:css']);
     gulp.watch(['app/scripts/**/*.js'], [/*'jshint',*/ 'scripts', reload]);
     gulp.watch(['app/assets/images/**/*'], reload);
 });
