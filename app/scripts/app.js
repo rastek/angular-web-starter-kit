@@ -1,7 +1,7 @@
 'use strict';
 
 // Declare app level module which depends on filters, and services
-window.App = angular.module('app', ['ngSanitize', 'ngResource', 'ui.router']).config(['$stateProvider', '$locationProvider', '$urlRouterProvider', function ($stateProvider, $locationProvider, $urlRouterProvider) {
+window.App = angular.module('app', ['ui.bootstrap.demo', 'ngSanitize', 'ngResource', 'ui.router']).config(['$stateProvider', '$locationProvider', '$urlRouterProvider', function ($stateProvider, $locationProvider, $urlRouterProvider) {
     $locationProvider.hashPrefix('!');
     $urlRouterProvider.otherwise('/');
 
@@ -31,6 +31,14 @@ window.App = angular.module('app', ['ngSanitize', 'ngResource', 'ui.router']).co
             '@': {
                 templateUrl: 'partials/todo.html',
                 controller: 'TodoCtrl'
+            }
+        }
+    }).state('bootstrap', {
+        parent: 'index',
+        url: '/ui-bootstrap',
+        views: {
+            '@': {
+                templateUrl: 'partials/ui-bootstrap.html'
             }
         }
     });

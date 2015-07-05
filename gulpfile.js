@@ -116,6 +116,7 @@ gulp.task('styles', ['styles:scss', 'styles:css']);
 gulp.task('html', function () {
     var assets = $.useref.assets({searchPath: '{.tmp,app}'});
     return gulp.src('app/**/*.html')
+        .pipe(debug({title: '[DEBUG][html]:'}))
         .pipe(assets)
         // Concatenate and minify JavaScript
         .pipe($.if('*.js', $.uglify({preserveComments: 'some'})))
@@ -147,6 +148,7 @@ gulp.task('html', function () {
 
 gulp.task('scripts', function () {
     return gulp.src('app/scripts/**/*.js')
+        .pipe(debug({title: '[DEBUG][script]:'}))
         .pipe($.if('*.js', $.uglify({preserveComments: 'some'})))
         .pipe($.sourcemaps.init())
         .pipe($.concat('app.js'))
@@ -157,7 +159,7 @@ gulp.task('scripts', function () {
 gulp.task('vendor', function () {
     var mainBowerFiles = require('main-bower-files');
     return gulp.src(mainBowerFiles(/* options */))
-        .pipe(debug({title: '[DEBUG][vendor task]:'}))
+        .pipe(debug({title: '[DEBUG][vendor]:'}))
         .pipe($.if('*.js', $.uglify({preserveComments: 'some'})))
         .pipe($.sourcemaps.init())
         .pipe($.concat('vendor.js'))

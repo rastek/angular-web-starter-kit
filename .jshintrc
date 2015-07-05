@@ -19,6 +19,7 @@
   "globals": {
     "$": false,
     "angular": false,
-    "App": false
+    "App": false,
+    "UiBootstrapDemo": false
   }
 }
