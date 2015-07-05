@@ -27,6 +27,7 @@ var runSequence = require('run-sequence');
 var browserSync = require('browser-sync-x');
 var pageSpeed = require('psi');
 var reload = browserSync.reload;
+var cache = $.cache;
 
 var AUTOPREFIXER_BROWSERS = [
     'ie >= 10',
@@ -51,12 +52,12 @@ gulp.task('jshint', function () {
 
 // Optimize images
 gulp.task('images', function () {
-    return gulp.src('app/images/**/*')
-        .pipe($.cache($.imagemin({
+    return gulp.src(['app/assets/images/**/*'])
+        .pipe(cache($.imagemin({
             progressive: true,
             interlaced: true
         })))
-        .pipe(gulp.dest('dist/images'))
+        .pipe(gulp.dest('dist/assets/images'))
         .pipe($.size({title: 'images'}));
 });
 
@@ -112,7 +113,7 @@ gulp.task('styles', ['styles:scss', 'styles:css']);
 
 // Scan your HTML for assets & optimize them
 gulp.task('html', function () {
-    var assets = $.useref.assets({searchPath: '{app}'});
+    var assets = $.useref.assets({searchPath: '{.tmp,app}'});
     return gulp.src('app/**/*.html')
         .pipe(assets)
         // Concatenate and minify JavaScript
@@ -121,7 +122,7 @@ gulp.task('html', function () {
         // commented for now as it doesn't work well with angular (ng-class for example)
         /*.pipe($.if('*.css', $.uncss({
          html: [
-         'app/index.html'
+         'app/htm.html'
          ],
          // CSS Selectors for UnCSS to ignore
          ignore: [
@@ -162,9 +163,13 @@ gulp.task('vendor', function () {
         .pipe(gulp.dest('app/assets/scripts'));
 });
 
+//Clear cache
+gulp.task('clear', function (done) {
+    return cache.clearAll(done);
+});
 
 // Clean output directory
-gulp.task('clean', del.bind(null, ['dist']));
+gulp.task('clean', ['clear'], del.bind(null, ['.tmp', 'dist']));
 
 // Watch files for changes & reload
 gulp.task('serve', function () {
@@ -172,7 +177,7 @@ gulp.task('serve', function () {
         open: false,
         notify: true,
         server: {
-            baseDir: ['app']
+            baseDir: ['.tmp', 'app']
         }
     });
 
