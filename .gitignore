@@ -4,3 +4,6 @@ node_modules
 dist
 .tmp
 .idea
+*.iml
+app/assets/scripts
+app/assets/styles
