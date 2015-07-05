@@ -5,5 +5,6 @@ dist
 .tmp
 .idea
 *.iml
-app/assets/scripts
-app/assets/styles
+npm-debug.log
+app/assets/scripts/*
+app/assets/styles/*

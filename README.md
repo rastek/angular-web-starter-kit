@@ -1,4 +1,4 @@
-# [![Web Starter Kit](https://cloud.githubusercontent.com/assets/170270/3343034/ceef6e92-f899-11e3-96b9-5d9d69d97a00.png)](https://github.com/ocombe/angular-web-starter-kit/releases/latest)
+# [![Web Starter Kit](https://cloud.githubusercontent.com/assets/170270/3343034/ceef6e92-f899-11e3-96b9-5d9d69d97a00.png)](https://github.com/rastek/angular-web-starter-kit/releases/latest)
 
 ## Overview
 
@@ -8,7 +8,7 @@
 
 ## Quickstart
 
-[Download](https://github.com/ocombe/angular-web-starter-kit/releases/latest) the kit or clone this repository and build on what we include in the `app` directory.
+[Download](https://github.com/rastek/angular-web-starter-kit/releases/latest) the kit or clone this repository and build on what we include in the `app` directory.
 
 - `index.html` - this is the default starting point, containing layout and a slide-out menu
 
@@ -88,7 +88,7 @@ This is not to say that Web Starter Kit cannot be used in browsers older than th
 
 ## Troubleshooting
 
-If you find yourself running into issues during installation or running the tools, please check our [Troubleshooting](https://github.com/google/web-starter-kit/wiki/Troubleshooting) guide and then open an [issue](https://github.com/ocombe/angular-web-starter-kit/issues). We would be happy to discuss how they can be solved.
+If you find yourself running into issues during installation or running the tools, please check our [Troubleshooting](https://github.com/google/web-starter-kit/wiki/Troubleshooting) guide and then open an [issue](https://github.com/rastek/angular-web-starter-kit/issues). We would be happy to discuss how they can be solved.
 
 ## A Boilerplate-only Option
 
@@ -96,7 +96,7 @@ If you would prefer not to use any of our tooling, delete the following files fr
 
 ## Inspiration
 
-Web Starter Kit is inspired by [Mobile HTML5 Boilerplate](http://html5boilerplate.com/mobile/) and Yeoman's [generator-gulp-webapp](https://github.com/yeoman/generator-gulp-webapp), having taken input from contributors to both projects during development. Our [FAQs](https://github.com/ocombe/angular-web-starter-kit/wiki/FAQ) attempt to answer commonly asked questions about the project.
+Web Starter Kit is inspired by [Mobile HTML5 Boilerplate](http://html5boilerplate.com/mobile/) and Yeoman's [generator-gulp-webapp](https://github.com/yeoman/generator-gulp-webapp), having taken input from contributors to both projects during development. Our [FAQs](https://github.com/rastek/angular-web-starter-kit/wiki/FAQ) attempt to answer commonly asked questions about the project.
 
 ## Contributing
 

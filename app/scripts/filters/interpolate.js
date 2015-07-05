@@ -2,9 +2,9 @@
 /* Filters*/
 
 App.filter('interpolate', [
-	'version', function(version) {
-		return function(text) {
-			return String(text).replace(/\%VERSION\%/mg, version);
-		};
-	}
+    'version', function (version) {
+        return function (text) {
+            return String(text).replace(/\%VERSION\%/mg, version);
+        };
+    }
 ]);

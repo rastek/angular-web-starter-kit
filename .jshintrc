@@ -15,5 +15,10 @@
   "unused": "vars",
   "strict": true,
   "trailing": true,
-  "smarttabs": true
+  "smarttabs": true,
+  "globals": {
+    "$": false,
+    "angular": false,
+    "App": false
+  }
 }

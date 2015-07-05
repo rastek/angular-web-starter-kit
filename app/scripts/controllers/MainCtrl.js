@@ -1,3 +1,5 @@
-App.controller('MainCtrl', ['$scope', function($scope) {
+'use strict';
+
+App.controller('MainCtrl', ['$scope', function ($scope) {
 
 }]);
