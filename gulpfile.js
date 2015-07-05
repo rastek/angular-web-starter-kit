@@ -26,6 +26,7 @@ var del = require('del');
 var runSequence = require('run-sequence');
 var browserSync = require('browser-sync-x');
 var pageSpeed = require('psi');
+var debug = require('gulp-debug');
 var reload = browserSync.reload;
 var cache = $.cache;
 
@@ -156,6 +157,7 @@ gulp.task('scripts', function () {
 gulp.task('vendor', function () {
     var mainBowerFiles = require('main-bower-files');
     return gulp.src(mainBowerFiles(/* options */))
+        .pipe(debug({title: '[DEBUG][vendor task]:'}))
         .pipe($.if('*.js', $.uglify({preserveComments: 'some'})))
         .pipe($.sourcemaps.init())
         .pipe($.concat('vendor.js'))
