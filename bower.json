@@ -21,6 +21,7 @@
     "angular-mocks": "~1.4.1",
     "angular-ui-router": "~0.2.15",
     "angular-bootstrap": "0.13.0",
+    "gm.datepicker-multi-select": "1.0.5",
     "angular-ui-bootstrap": "0.13.0",
     "lodash": "~3.10.0",
     "bootstrap-sass-official": "~3.3.5"

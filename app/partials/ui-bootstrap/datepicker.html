@@ -11,18 +11,51 @@
   }
 </style>
 <div ng-controller="DatepickerDemoCtrl">
-  <pre>Selected date is: <em>{{dt | date:'fullDate' }}</em></pre>
+  <pre>Selected date is: <em>{{activeDate | date:'fullDate' }}</em></pre>
 
-  <h4>Inline</h4>
-  <div style="display:inline-block; min-height:290px;">
-    <datepicker ng-model="dt" min-date="minDate" show-weeks="true" class="well well-sm" custom-class="getDayClass(date, mode)"></datepicker>
+  <div class='panel'><h4>Selection Type:</h4>
+    <div class='btn-group'>
+      <button class='btn btn-info' ng-model='type' btn-radio='"individual"'>Individual</button>
+      <button class='btn btn-info' ng-model='type' btn-radio='"range"'>Range</button>
+    </div>
   </div>
+  <hr>
+  <table>
+    <tr>
+      <td>
+        <datepicker ng-model="activeDate" multi-select='selectedDates' min-date="minDate" select-range='{{type=="range"}}' starting-day="1" show-weeks="true" class="well well-sm" custom-class="getDayClass(date, mode)"></datepicker>
+      </td>
+        <td style='width:50px'>
+        </td>
+        <td>
+            <div ng-if='type=="individual"'>
+                Selected Dates:
+                <div class='well well-sm'>
+                    <div ng-repeat='d in selectedDates | orderBy : identity'>
+                        {{d | date : 'fullDate'}}
+                        <button class='btn btn-xs btn-warning' style='margin:5px' ng-click='removeFromSelected(d)'>Remove</button>
+                    </div>
+                </div>
+            </div>
+            <div ng-if='type=="range"' >
+                Selected Range:
+                <div class='well well-sm'>
+                    {{(selectedDates | orderBy)[0] | date:"fullDate"}}
+              <span ng-if='selectedDates.length > 1'>
+                - {{(selectedDates | orderBy : '-')[0] | date:"fullDate"}}
+              </span>
+                </div>
+            </div>
+        </td>
+    </tr>
+  </table>
+
 
   <h4>Popup</h4>
   <div class="row">
     <div class="col-md-6">
       <p class="input-group">
-        <input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="dt" is-open="opened" min-date="minDate" max-date="'2015-06-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
+        <input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="activeDate" is-open="opened" min-date="minDate" max-date="'2015-06-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
               <span class="input-group-btn">
                 <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
               </span>
@@ -31,7 +64,7 @@
 
     <div class="col-md-6">
       <p class="input-group">
-        <input type="date" class="form-control" datepicker-popup ng-model="dt" is-open="opened" min-date="minDate" max-date="'2015-06-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
+        <input type="date" class="form-control" datepicker-popup ng-model="activeDate" is-open="opened" min-date="minDate" max-date="'2015-06-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
               <span class="input-group-btn">
                 <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
               </span>
@@ -46,7 +79,7 @@
 
   <hr />
   <button type="button" class="btn btn-sm btn-info" ng-click="today()">Today</button>
-  <button type="button" class="btn btn-sm btn-default" ng-click="dt = '2009-08-24'">2009-08-24</button>
+  <button type="button" class="btn btn-sm btn-default" ng-click="selectDate('2009-08-24')">2009-08-24</button>
   <button type="button" class="btn btn-sm btn-danger" ng-click="clear()">Clear</button>
   <button type="button" class="btn btn-sm btn-default" ng-click="toggleMin()" tooltip="After today restriction">Min date</button>
 </div>

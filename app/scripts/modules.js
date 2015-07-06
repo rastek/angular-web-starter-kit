@@ -1,3 +1,3 @@
 'use strict';
 
-window.UiBootstrapDemo = angular.module('ui.bootstrap.demo', ['ui.bootstrap']);
+window.UiBootstrapDemo = angular.module('ui.bootstrap.demo', ['ui.bootstrap', 'gm.datepickerMultiSelect']);

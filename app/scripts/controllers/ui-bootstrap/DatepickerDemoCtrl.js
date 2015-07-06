@@ -1,13 +1,37 @@
 'use strict';
 
 UiBootstrapDemo.controller('DatepickerDemoCtrl', ['$scope', function ($scope) {
+    $scope.activeDate = null;
+    $scope.selectedDates = [new Date().setHours(0, 0, 0, 0)];
+    $scope.type = 'individual';
+
+    $scope.identity = angular.identity;
+
+    $scope.removeFromSelected = function (dt) {
+        $scope.selectedDates.splice($scope.selectedDates.indexOf(dt), 1);
+    };
+
+    $scope.selectDate = function (date) {
+        var selectedDate = new Date(date);
+        selectedDate.setHours(0, 0, 0, 0);
+        $scope.activeDate = selectedDate;
+        $scope.selectedDates = [];
+    };
+
     $scope.today = function () {
-        $scope.dt = new Date();
+        var newDate = new Date();
+        newDate.setHours(0, 0, 0, 0);
+        $scope.selectDate(newDate);
     };
     $scope.today();
 
     $scope.clear = function () {
-        $scope.dt = null;
+        if ($scope.selectedDates.length == 0) {
+            return;
+        }
+        $scope.selectedDates = [];
+        $scope.type = 'individual';
+        $scope.identity = angular.identity;
     };
 
     // Disable weekend selection
@@ -38,7 +62,7 @@ UiBootstrapDemo.controller('DatepickerDemoCtrl', ['$scope', function ($scope) {
     var tomorrow = new Date();
     tomorrow.setDate(tomorrow.getDate() + 1);
     var afterTomorrow = new Date();
-    afterTomorrow.setDate(tomorrow.getDate() + 2);
+    afterTomorrow.setDate(tomorrow.getDate() + 1);
     $scope.events =
         [
             {
